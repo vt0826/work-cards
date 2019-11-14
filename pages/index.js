@@ -155,9 +155,7 @@ function Home(props) {
 
 // api call GET work orde data
 Home.getInitialProps = async ({ req }) => {
-  const res = await fetch(
-    "https://www.hatchways.io/api/assessment/work_orders"
-  );
+  const res = await fetch(API);
   const json = await res.json();
   return json;
 };

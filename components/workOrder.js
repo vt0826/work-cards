@@ -15,7 +15,7 @@ class WorkOrder extends React.Component {
     let workersData = [];
 
     const fetchWorker = async workerId => {
-      let url = `https://www.hatchways.io/api/assessment/workers/${workerId}`;
+      let url = API + workerId;
       const res = await fetch(url);
       const data = await res.json();
       const worker = await data.worker;
@@ -34,11 +34,7 @@ class WorkOrder extends React.Component {
   render() {
     const workers = this.state.workers;
     const filteredWorkOrders = this.state.filteredWorkOrders;
-    if (
-      filteredWorkOrders &&
-      workers &&
-      workers.length === filteredWorkOrders.length
-    ) {
+    if (filteredWorkOrders && workers && workers.length === filteredWorkOrders.length) {
       return (
         <>
           <div className="flex-container">
@@ -49,10 +45,7 @@ class WorkOrder extends React.Component {
               if (filteredWorker.length > 0 && workerIndex > -1) {
                 return (
                   <div className="flex-item card" key={workOrder.id}>
-                    <WorkCard
-                      workOrder={workOrder}
-                      worker={filteredWorker[workerIndex]}
-                    />
+                    <WorkCard workOrder={workOrder} worker={filteredWorker[workerIndex]} />
                   </div>
                 );
               } else {
